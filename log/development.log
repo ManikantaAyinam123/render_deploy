@@ -1661,3 +1661,76 @@ Processing by Api::VotersController#index as JSON
 Completed 200 OK in 27ms (Views: 17.5ms | ActiveRecord: 3.3ms | Allocations: 12772)
 
 
+Started GET "/LeadData" for ::1 at 2024-07-23 17:28:09 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"path"=>"LeadData"}
+  Rendering home/index.html.erb
+  Rendered home/index.html.erb (Duration: 10.9ms | Allocations: 3198)
+Completed 200 OK in 20ms (Views: 15.3ms | ActiveRecord: 0.0ms | Allocations: 7382)
+
+
+Started GET "/" for ::1 at 2024-07-23 18:22:34 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb
+  Rendered home/index.html.erb (Duration: 15.3ms | Allocations: 3210)
+Completed 200 OK in 26ms (Views: 21.3ms | ActiveRecord: 0.0ms | Allocations: 7393)
+
+
+Started GET "/LeadData" for ::1 at 2024-07-23 18:22:35 +0530
+Processing by HomeController#index as HTML
+  Parameters: {"path"=>"LeadData"}
+  Rendering home/index.html.erb
+  Rendered home/index.html.erb (Duration: 2.2ms | Allocations: 1251)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.0ms | Allocations: 1618)
+
+
+Started POST "/api/auth/login" for ::1 at 2024-07-23 18:22:43 +0530
+Processing by Api::AuthenticationController#login as JSON
+  Parameters: {"email"=>"m@gmail.com", "password"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "m@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/authentication_controller.rb:6:in `login'
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/actimize/Music/render_deploy/app/lib/json_web_token.rb:2)
+Completed 200 OK in 428ms (Views: 0.4ms | ActiveRecord: 18.0ms | Allocations: 15985)
+
+
+Started GET "/api/voters/search_by_booth_name?booth_name=m" for ::1 at 2024-07-23 18:22:46 +0530
+Processing by Api::VotersController#search_by_booth_name as JSON
+  Parameters: {"booth_name"=>"m"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:34:in `authorize_request'
+  [1m[36mVoter Pluck (3.5ms)[0m  [1m[34mSELECT DISTINCT "voters"."booth_name" FROM "voters" WHERE (Lower(booth_name) LIKE '%m%')[0m
+  ↳ app/controllers/api/voters_controller.rb:67:in `search_by_booth_name'
+Completed 200 OK in 28ms (Views: 0.3ms | ActiveRecord: 6.7ms | Allocations: 4709)
+
+
+Started GET "/api/voters?booth_name=m&page=1" for ::1 at 2024-07-23 18:22:46 +0530
+Processing by Api::VotersController#index as JSON
+  Parameters: {"booth_name"=>"m", "page"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:34:in `authorize_request'
+  [1m[36mVoter Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "voters" WHERE "voters"."booth_name" = $1[0m  [["booth_name", "m"]]
+  ↳ app/controllers/api/voters_controller.rb:18:in `index'
+  [1m[36mCACHE Voter Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "voters" WHERE "voters"."booth_name" = $1[0m  [["booth_name", "m"]]
+  ↳ app/controllers/api/voters_controller.rb:20:in `index'
+  [1m[36mVoter Load (0.9ms)[0m  [1m[34mSELECT "voters".* FROM "voters" WHERE "voters"."booth_name" = $1 ORDER BY "voters"."id" ASC LIMIT $2 OFFSET $3[0m  [["booth_name", "m"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/controllers/api/voters_controller.rb:21:in `index'
+Completed 200 OK in 21ms (Views: 3.8ms | ActiveRecord: 2.3ms | Allocations: 3543)
+
+
+Started GET "/api/voters?booth_name=S.B.T.S%20Mpl.%20.P.%20Sch%20Ool,Mandapeta&page=1" for ::1 at 2024-07-23 18:22:47 +0530
+Processing by Api::VotersController#index as JSON
+  Parameters: {"booth_name"=>"S.B.T.S Mpl. .P. Sch Ool,Mandapeta", "page"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:34:in `authorize_request'
+  [1m[36mVoter Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "voters" WHERE "voters"."booth_name" = $1[0m  [["booth_name", "S.B.T.S Mpl. .P. Sch Ool,Mandapeta"]]
+  ↳ app/controllers/api/voters_controller.rb:18:in `index'
+  [1m[36mCACHE Voter Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "voters" WHERE "voters"."booth_name" = $1[0m  [["booth_name", "S.B.T.S Mpl. .P. Sch Ool,Mandapeta"]]
+  ↳ app/controllers/api/voters_controller.rb:20:in `index'
+  [1m[36mVoter Load (0.6ms)[0m  [1m[34mSELECT "voters".* FROM "voters" WHERE "voters"."booth_name" = $1 ORDER BY "voters"."id" ASC LIMIT $2 OFFSET $3[0m  [["booth_name", "S.B.T.S Mpl. .P. Sch Ool,Mandapeta"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/controllers/api/voters_controller.rb:21:in `index'
+Completed 200 OK in 46ms (Views: 30.2ms | ActiveRecord: 4.5ms | Allocations: 12763)
+
+
