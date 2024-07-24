@@ -9,9 +9,9 @@ services:
     name: myapp
     env: ruby
     buildCommand: |
-      set -o errexit
-      npm install --prefix client
-      npm run build --prefix client
+      set -o 
+      npm install 
+      npm run build 
       bundle install
       bundle exec rails assets:precompile
     startCommand: bundle exec rails server
