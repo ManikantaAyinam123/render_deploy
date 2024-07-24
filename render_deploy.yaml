@@ -6,12 +6,15 @@ databases:
 
 services:
   - type: web
-    name: mysite
-    runtime: ruby
-    plan: free
-    buildCommand: "./bin/render_deploy-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "foreman start"
+    name: myapp
+    env: ruby
+    buildCommand: |
+      set -o errexit
+      npm install --prefix client
+      npm run build --prefix client
+      bundle install
+      bundle exec rails assets:precompile
+    startCommand: bundle exec rails server
     envVars:
       - key: DATABASE_URL
         fromDatabase:
