@@ -1,4 +1,5 @@
-set -o 
+set -o errexit 
+npm install --prefix client && npm run build --prefix client
 
 bundle install
 bundle exec rails assets:precompile

@@ -1739,3 +1739,19 @@ Completed 200 OK in 46ms (Views: 30.2ms | ActiveRecord: 4.5ms | Allocations: 127
   [1m[36mActiveRecord::InternalMetadata Load (2.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
   [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(5734670252676646680)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2024-07-24 10:06:09 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb
+  Rendered home/index.html.erb (Duration: 11.7ms | Allocations: 3210)
+Completed 200 OK in 22ms (Views: 16.3ms | ActiveRecord: 0.0ms | Allocations: 7393)
+
+
+Started GET "/favicon.ico" for ::1 at 2024-07-24 10:06:10 +0530
+Processing by HomeController#index as */*
+  Parameters: {"path"=>"favicon"}
+  Rendering home/index.html.erb
+  Rendered home/index.html.erb (Duration: 2.4ms | Allocations: 1251)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 1705)
+
+
